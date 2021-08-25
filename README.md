@@ -1,4 +1,5 @@
 # Ory Kratos Next.Js Example on typescript.
+
 Extremely verbose example of implementation of Kratos on next without much abstraction for easier understanding of basic principles.
 
 ## Steps.
@@ -10,9 +11,8 @@ Extremely verbose example of implementation of Kratos on next without much abstr
 
 ## Flows implemented.
 
- - [ ] Login (WIP)
- - [ ] Register
- - [ ] Recovery
- - [ ] Oidc
- - [ ] dashboard
-
+- [ ] Login (WIP)
+- [ ] Register
+- [ ] Recovery
+- [ ] Oidc
+- [ ] dashboard

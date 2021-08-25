@@ -5,6 +5,7 @@ import { API_URL } from "../utils/config";
 import { kratos } from "../utils/kratos";
 
 const LoginPage = ({ flowData }: { flowData: SelfServiceLoginFlow }) => {
+  console.log(flowData);
   return (
     <div>
       <p style={{ marginBottom: "100px" }}>{JSON.stringify(flowData)}</p>

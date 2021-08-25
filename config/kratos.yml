@@ -23,10 +23,8 @@ serve:
       options_passthrough: false
       debug: true
       enabled: true
-    host: "0.0.0.0"
-    port: 4433
   admin:
-    base_url: http://kratos:4434/
+    base_url: http://127.0.0.1:4434/
     host: "0.0.0.0"
     port: 4434
 
@@ -34,7 +32,6 @@ selfservice:
   default_browser_return_url: http://127.0.0.1:3000/
   whitelisted_return_urls:
     - http://127.0.0.1:3000
-
   methods:
     password:
       enabled: true
@@ -67,7 +64,7 @@ selfservice:
 
     registration:
       lifespan: 10m
-      ui_url: http://127.0.0.1:3000/registration
+      ui_url: http://127.0.0.1:3000/register
       after:
         password:
           hooks:
@@ -92,6 +89,12 @@ hashers:
 
 identity:
   default_schema_url: file:///etc/config/kratos/identity.schema.json
+
+session:
+  lifespan: 24h
+  cookie:
+    domain: http://127.0.0.1:3000
+    same_site: Lax
 
 courier:
   smtp:
