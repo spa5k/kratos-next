@@ -31,7 +31,7 @@ services:
       - intranet
 
   kratos-migrate:
-    image: oryd/kratos:v0.7.0-alpha.1
+    image: oryd/kratos:v0.7.1-alpha.1
     container_name: kratos-migrate
     depends_on:
       - postgres
@@ -47,7 +47,7 @@ services:
       - intranet
 
   kratos:
-    image: oryd/kratos:v0.7.0-alpha.1
+    image: oryd/kratos:v0.7.1-alpha.1
     container_name: kratos
     depends_on:
       - kratos-migrate
