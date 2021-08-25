@@ -7,14 +7,16 @@
     "type-check": "tsc"
   },
   "dependencies": {
+    "@ory/kratos-client": "^0.7.1-alpha.2",
     "next": "latest",
+    "next-universal-cookie": "^3.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "@types/node": "^12.12.21",
-    "@types/react": "^17.0.2",
-    "@types/react-dom": "^17.0.1",
-    "typescript": "4.0"
+    "@types/node": "^16.7.1",
+    "@types/react": "^17.0.19",
+    "@types/react-dom": "^17.0.9",
+    "typescript": "4.3.5"
   }
 }
