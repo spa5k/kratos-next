@@ -57,7 +57,9 @@ const RegisterPage = ({
             required
             placeholder="password"
           />
-          <button type="submit">Sign In</button>
+          <button type="submit" name="method" value="password">
+            Sign In
+          </button>
         </form>
       </div>
     </div>

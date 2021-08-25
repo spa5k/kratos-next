@@ -20,7 +20,7 @@ serve:
         - Content-Type
         - Set-Cookie
       allow_credentials: true
-      options_passthrough: false
+      options_passthrough: true
       debug: true
       enabled: true
   admin:
@@ -29,7 +29,7 @@ serve:
     port: 4434
 
 selfservice:
-  default_browser_return_url: http://127.0.0.1:3000/
+  default_browser_return_url: http://127.0.0.1:3000
   whitelisted_return_urls:
     - http://127.0.0.1:3000
   methods:
