@@ -3,10 +3,10 @@ import { NextPageContext } from "next";
 import Link from "next/dist/client/link";
 import dynamic from "next/dynamic";
 import { InputHTMLAttributes } from "react";
-import { API_URL } from "../utils/config";
+import { KRATOS_API_URL } from "../utils/config";
 import { kratos } from "../utils/kratos";
 
-const DynamicComponent = dynamic(import("react-json-view"), { ssr: false });
+const JsonView = dynamic(import("react-json-view"), { ssr: false });
 const LoginPage = ({ flowData }: { flowData: SelfServiceLoginFlow }) => {
   console.log(flowData);
   return (
@@ -15,6 +15,7 @@ const LoginPage = ({ flowData }: { flowData: SelfServiceLoginFlow }) => {
         <p>Sign in</p>
         {flowData && (
           <form method="POST" action={flowData.ui.action}>
+            {/* This Adds a hidden input for CSRF Token  */}
             {flowData.ui.nodes
               .filter((node) => node.group === "default")
               .map((node) => {
@@ -52,8 +53,8 @@ const LoginPage = ({ flowData }: { flowData: SelfServiceLoginFlow }) => {
         </div>
       </div>
 
-      {flowData && typeof window !== "undefined" && (
-        <DynamicComponent
+      {flowData && (
+        <JsonView
           src={flowData}
           style={{ fontSize: "20px", marginTop: "30px" }}
           enableClipboard={false}
@@ -73,7 +74,7 @@ export async function getServerSideProps(context: NextPageContext) {
   if (!flowId) {
     return {
       redirect: {
-        destination: `${API_URL}/self-service/login/browser`,
+        destination: `${KRATOS_API_URL}/self-service/login/browser`,
       },
     };
   }

@@ -3,15 +3,17 @@ import { NextPageContext } from "next";
 import Link from "next/dist/client/link";
 import dynamic from "next/dynamic";
 import { InputHTMLAttributes, useEffect, useState } from "react";
-import { API_URL } from "../utils/config";
+import { KRATOS_API_URL } from "../utils/config";
 import { kratos } from "../utils/kratos";
 
-const DynamicComponent = dynamic(import("react-json-view"), { ssr: false });
+const JsonView = dynamic(import("react-json-view"), { ssr: false });
+
 const SettingsPage = ({ flowData }: { flowData: SelfServiceSettingsFlow }) => {
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
 
+  // This useEffect is to add the values in their respective fields
   useEffect(() => {
     setEmail(flowData.identity.recovery_addresses[0].value);
     setFirstName(flowData.identity.traits.name.first);
@@ -19,6 +21,7 @@ const SettingsPage = ({ flowData }: { flowData: SelfServiceSettingsFlow }) => {
   }, [flowData]);
 
   console.log("flowData", flowData);
+
   return (
     <div>
       <h1>Settings</h1>
@@ -43,6 +46,7 @@ const SettingsPage = ({ flowData }: { flowData: SelfServiceSettingsFlow }) => {
               width: "300px",
             }}
           >
+            {/* This Adds a hidden input for CSRF Token  */}
             {flowData.ui.nodes
               .filter((node) => node.group === "default")
               .map((node) => {
@@ -87,6 +91,7 @@ const SettingsPage = ({ flowData }: { flowData: SelfServiceSettingsFlow }) => {
               />
             </label>
 
+            {/* This button will update the email, first and last name  */}
             <button name="method" type="submit" value="profile">
               Update Profile
             </button>
@@ -98,16 +103,18 @@ const SettingsPage = ({ flowData }: { flowData: SelfServiceSettingsFlow }) => {
               <input name="password" type="password" placeholder="Password" />
             </label>
 
+            {/* This button is used to upadate the password  */}
             <button name="method" type="submit" value="password">
               Update Password
             </button>
           </form>
         )}
       </div>
+
       {flowData.ui.messages && (
         <>
           <h3>Errors</h3>
-          <DynamicComponent
+          <JsonView
             src={flowData.ui.messages}
             style={{ fontSize: "20px", marginTop: "30px" }}
             enableClipboard={false}
@@ -117,7 +124,7 @@ const SettingsPage = ({ flowData }: { flowData: SelfServiceSettingsFlow }) => {
       )}
 
       {flowData && (
-        <DynamicComponent
+        <JsonView
           src={flowData}
           style={{ fontSize: "20px", marginTop: "30px" }}
           enableClipboard={false}
@@ -128,6 +135,7 @@ const SettingsPage = ({ flowData }: { flowData: SelfServiceSettingsFlow }) => {
   );
 };
 
+// Server side props for getting the Cookies and flow id etc
 export async function getServerSideProps(context: NextPageContext) {
   const allCookies = context.req.headers.cookie;
   const flowId = context.query.flow;
@@ -135,14 +143,15 @@ export async function getServerSideProps(context: NextPageContext) {
   if (!flowId) {
     return {
       redirect: {
-        destination: `${API_URL}/self-service/settings/browser`,
+        destination: `${KRATOS_API_URL}/self-service/settings/browser`,
+        // This url needs to change according to the work you are intending it to do
       },
     };
   }
 
   let flowData: SelfServiceSettingsFlow | void;
 
-  if (allCookies && flowId) {
+  if (allCookies) {
     const data = await kratos
       .getSelfServiceSettingsFlow(flowId.toString(), undefined, allCookies)
       .then(({ data: flow }) => {
@@ -162,34 +171,3 @@ export async function getServerSideProps(context: NextPageContext) {
 }
 
 export default SettingsPage;
-
-/*
-  <fieldset>
-    <label>
-        <input name="traits.name.first" type="text" value="1231231231" placeholder="First Name">
-        <span>First Name</span>
-    </label>
-    <div class="messages "></div></fieldset>    <fieldset>
-    <label>
-        <input name="traits.name.last" type="text" value="23123123123123123" placeholder="Last Name">
-        <span>Last Name</span>
-    </label>
-    <div class="messages "></div></fieldset>
-
-    <button name="method" type="submit" value="profile">
-  Save
-</button>
-<hr class="divider">
-<p>Password</p>
-  <fieldset>
-      <label>
-          <input name="password" type="password" value="" placeholder="Password">
-          <span>Password</span>
-      </label>
-            <div class="messages "></div>
-      </fieldset>
-          <button name="method" type="submit" value="password">
-    Save
-  </button>
-
-*/

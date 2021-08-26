@@ -4,13 +4,14 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { kratos } from "../utils/kratos";
 
-const DynamicComponent = dynamic(import("react-json-view"), { ssr: false });
+const JsonView = dynamic(import("react-json-view"), { ssr: false });
 
 const DashboardPage = ({ flowData }: { flowData: string }) => {
   const [userIdentity, setUserIdentity] = useState();
   const [errorData, setErrorData] = useState();
 
   useEffect(() => {
+    // Get the info on user who is using the session
     fetch("http://127.0.0.1:4433/sessions/whoami", { credentials: "include" })
       .then((response) => response.json())
       .then((data) => {
@@ -32,7 +33,7 @@ const DashboardPage = ({ flowData }: { flowData: string }) => {
         <Link href="/login">Login</Link>
         <br />
         <Link href="/register">Register</Link>
-        <DynamicComponent
+        <JsonView
           src={errorData}
           style={{ fontSize: "20px", marginTop: "30px" }}
           enableClipboard={false}
@@ -51,7 +52,7 @@ const DashboardPage = ({ flowData }: { flowData: string }) => {
           <br />
           <Link href="/settings">Settings</Link>
 
-          <DynamicComponent
+          <JsonView
             src={userIdentity}
             style={{ fontSize: "20px", marginTop: "30px" }}
             enableClipboard={false}

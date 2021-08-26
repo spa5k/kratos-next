@@ -1,26 +1,27 @@
 {
-  "private": true,
-  "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "start": "next start",
-    "type-check": "tsc",
-    "format": "prettier --write ."
-  },
+  "name": "kratos-next",
+  "version": "0.0.1",
+  "description": "Ory Kratos self service ui implementation on next js",
   "dependencies": {
     "@ory/kratos-client": "^0.7.1-alpha.2",
-    "ky": "^0.28.5",
     "next": "latest",
-    "next-universal-cookie": "^3.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-json-view": "^1.21.3"
   },
   "devDependencies": {
-    "@types/node": "^16.7.1",
+    "@types/node": "^16.7.2",
     "@types/react": "^17.0.19",
     "@types/react-dom": "^17.0.9",
     "prettier": "^2.3.2",
     "typescript": "4.3.5"
+  },
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "dev": "next",
+    "format": "prettier --write .",
+    "start": "next start",
+    "type-check": "tsc"
   }
 }

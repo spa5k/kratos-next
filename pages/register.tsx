@@ -2,9 +2,9 @@ import { SelfServiceRegistrationFlow } from "@ory/kratos-client";
 import { NextPageContext } from "next";
 import dynamic from "next/dynamic";
 import { InputHTMLAttributes } from "react";
-import { API_URL } from "../utils/config";
+import { KRATOS_API_URL } from "../utils/config";
 import { kratos } from "../utils/kratos";
-const DynamicComponent = dynamic(import("react-json-view"), { ssr: false });
+const JsonView = dynamic(import("react-json-view"), { ssr: false });
 
 const RegisterPage = ({
   flowData,
@@ -59,14 +59,12 @@ const RegisterPage = ({
           </button>
         </form>
       </div>
-      {typeof window !== "undefined" && (
-        <DynamicComponent
-          src={flowData}
-          style={{ fontSize: "20px" }}
-          enableClipboard={false}
-          displayDataTypes={false}
-        />
-      )}
+      <JsonView
+        src={flowData}
+        style={{ fontSize: "20px" }}
+        enableClipboard={false}
+        displayDataTypes={false}
+      />
     </div>
   );
 };
@@ -78,7 +76,7 @@ export async function getServerSideProps(context: NextPageContext) {
   if (!flowId) {
     return {
       redirect: {
-        destination: `${API_URL}/self-service/registration/browser`,
+        destination: `${KRATOS_API_URL}/self-service/registration/browser`,
       },
     };
   }
