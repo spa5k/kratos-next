@@ -6,7 +6,7 @@ import { kratos } from "../utils/kratos";
 
 const DynamicComponent = dynamic(import("react-json-view"), { ssr: false });
 
-const MePage = ({ flowData }: { flowData: string }) => {
+const DashboardPage = ({ flowData }: { flowData: string }) => {
   const [userIdentity, setUserIdentity] = useState();
   const [errorData, setErrorData] = useState();
 
@@ -87,4 +87,4 @@ export async function getServerSideProps(context: NextPageContext) {
   };
 }
 
-export default MePage;
+export default DashboardPage;

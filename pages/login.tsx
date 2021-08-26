@@ -30,13 +30,15 @@ const LoginPage = ({ flowData }: { flowData: SelfServiceLoginFlow }) => {
               id="password_identifier"
               type="text"
               name="password_identifier"
-              required
             />
-            <input name="password" type="password" id="password" required />
+            <input name="password" type="password" id="password" />
             <button type="submit" name="method" value="password">
               Sign In
             </button>
-            <input name="csrf_token" id="csrf_token" type="hidden" required />
+            <br />
+            <button type="submit" name="provider" value="github">
+              Login with github
+            </button>
           </form>
         )}
         <div style={{ display: "flex", flexDirection: "column" }}>
@@ -65,6 +67,8 @@ const LoginPage = ({ flowData }: { flowData: SelfServiceLoginFlow }) => {
 export async function getServerSideProps(context: NextPageContext) {
   const allCookies = context.req.headers.cookie;
   const flowId = context.query.flow;
+
+  const id = context.query.id;
 
   if (!flowId) {
     return {

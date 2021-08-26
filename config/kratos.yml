@@ -33,6 +33,17 @@ selfservice:
   whitelisted_return_urls:
     - http://127.0.0.1:3000
   methods:
+    oidc:
+      enabled: true
+      config:
+        providers:
+          - id: github
+            provider: github
+            client_id: ... # Add the client ID
+            client_secret: # Add the client secret
+            mapper_url: file:///etc/config/kratos/oidc.github.jsonnet
+            scope:
+              - user:email
     password:
       enabled: true
 
@@ -52,7 +63,7 @@ selfservice:
       enabled: true
       ui_url: http://127.0.0.1:3000/verify
       after:
-        default_browser_return_url: http://127.0.0.1:3000/me
+        default_browser_return_url: http://127.0.0.1:3000/dashboard
 
     logout:
       after:
@@ -67,6 +78,9 @@ selfservice:
       ui_url: http://127.0.0.1:3000/register
       after:
         password:
+          hooks:
+            - hook: session
+        oidc:
           hooks:
             - hook: session
 

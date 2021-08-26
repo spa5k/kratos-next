@@ -104,6 +104,17 @@ const SettingsPage = ({ flowData }: { flowData: SelfServiceSettingsFlow }) => {
           </form>
         )}
       </div>
+      {flowData.ui.messages && (
+        <>
+          <h3>Errors</h3>
+          <DynamicComponent
+            src={flowData.ui.messages}
+            style={{ fontSize: "20px", marginTop: "30px" }}
+            enableClipboard={false}
+            displayDataTypes={false}
+          />
+        </>
+      )}
 
       {flowData && (
         <DynamicComponent

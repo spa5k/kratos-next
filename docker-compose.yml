@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   postgres:
-    image: supabase/postgres:latest
+    image: postgres:latest
     container_name: kratos-postgres
     restart: "no"
     working_dir: /application
@@ -81,8 +81,6 @@ networks:
 
 volumes:
   postgres:
-    name: vol-db
-  redis:
-    name: vol-redis
+    name: vol-kratos
   pgadmin:
     name: vol-pgadmin
