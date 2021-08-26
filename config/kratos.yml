@@ -52,7 +52,7 @@ selfservice:
       enabled: true
       ui_url: http://127.0.0.1:3000/verify
       after:
-        default_browser_return_url: http://127.0.0.1:3000/
+        default_browser_return_url: http://127.0.0.1:3000/me
 
     logout:
       after:

@@ -45,9 +45,11 @@ const MePage = ({ flowData }: { flowData: string }) => {
     <div>
       <h1>Dashboard</h1>
 
-      {userIdentity && typeof window !== "undefined" && (
+      {userIdentity && (
         <>
           <Link href={flowData}>LOGOUT</Link>
+          <br />
+          <Link href="/settings">Settings</Link>
 
           <DynamicComponent
             src={userIdentity}

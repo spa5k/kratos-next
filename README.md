@@ -13,6 +13,6 @@ Extremely verbose example of implementation of Kratos on next without much abstr
 
 - [x] Login
 - [x] Register
-- [ ] Recovery (WIP)
-- [ ] Oidc
-- [ ] dashboard
+- [x] Recovery
+- [x] Dashboard
+- [ ] Oidc (WIP)

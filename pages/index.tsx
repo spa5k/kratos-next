@@ -3,19 +3,23 @@ import Link from "next/link";
 const IndexPage = () => (
   <div title="Home | Next.js + TypeScript Example">
     <h1>Hello Next.js 👋</h1>
-    <p>
+    <div style={{ display: "flex", flexDirection: "column" }}>
       <Link href="/login">
         <a>Login</a>
       </Link>
       <br />
       <Link href="/me">
-        <a>me</a>
+        <a>Dashboard</a>
       </Link>
       <br />
       <Link href="/register">
         <a>Register</a>
       </Link>
-    </p>
+      <br />
+      <Link href="/recovery">
+        <a>Recovery</a>
+      </Link>
+    </div>
   </div>
 );
 
