@@ -7,6 +7,14 @@ const IndexPage = () => (
       <Link href="/login">
         <a>Login</a>
       </Link>
+      <br />
+      <Link href="/me">
+        <a>me</a>
+      </Link>
+      <br />
+      <Link href="/register">
+        <a>Register</a>
+      </Link>
     </p>
   </div>
 );

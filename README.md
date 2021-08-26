@@ -11,8 +11,8 @@ Extremely verbose example of implementation of Kratos on next without much abstr
 
 ## Flows implemented.
 
-- [ ] Login (WIP)
-- [ ] Register
-- [ ] Recovery
+- [x] Login
+- [x] Register
+- [ ] Recovery (WIP)
 - [ ] Oidc
 - [ ] dashboard

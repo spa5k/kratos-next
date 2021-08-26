@@ -13,7 +13,8 @@
     "next": "latest",
     "next-universal-cookie": "^3.0.0",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-json-view": "^1.21.3"
   },
   "devDependencies": {
     "@types/node": "^16.7.1",

@@ -1,22 +1,19 @@
 import { SelfServiceRegistrationFlow } from "@ory/kratos-client";
 import { NextPageContext } from "next";
+import dynamic from "next/dynamic";
 import { InputHTMLAttributes } from "react";
 import { API_URL } from "../utils/config";
 import { kratos } from "../utils/kratos";
+const DynamicComponent = dynamic(import("react-json-view"), { ssr: false });
 
 const RegisterPage = ({
   flowData,
 }: {
   flowData: SelfServiceRegistrationFlow;
 }) => {
-  console.log(flowData);
-
   return (
     <div>
-      <p style={{ marginBottom: "100px" }}>
-        {JSON.stringify(flowData.ui.messages)}
-      </p>
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex", alignItems: "center" }}>
         <h1>Register</h1>
         <form method="POST" action={flowData.ui.action}>
           {flowData.ui.nodes
@@ -62,6 +59,14 @@ const RegisterPage = ({
           </button>
         </form>
       </div>
+      {typeof window !== "undefined" && (
+        <DynamicComponent
+          src={flowData}
+          style={{ fontSize: "20px" }}
+          enableClipboard={false}
+          displayDataTypes={false}
+        />
+      )}
     </div>
   );
 };
