@@ -55,7 +55,11 @@ const RegisterPage = ({
             placeholder="password"
           />
           <button type="submit" name="method" value="password">
-            Sign In
+            Register
+          </button>
+
+          <button type="submit" name="provider" value="github">
+            Signup with github
           </button>
         </form>
       </div>
