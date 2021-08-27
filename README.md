@@ -13,6 +13,10 @@ Extremely simple and minimal self service ui example on implementation of Kratos
 3. Run the next js by doing `yarn dev`.
 4. Open next js page on `127.0.0.1:3000`.
 
+## Things to consider.
+
+Remember that this example is using github oidc, so before starting it, add client secret and client id in [config](/config/kratos.yml) otherwise it won't start.
+
 ## Flows implemented.
 
 - [x] Login
